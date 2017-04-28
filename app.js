@@ -1,3 +1,6 @@
+//to reset github
+//git reset --hard user_to_pull_from/master
+
 var express = require('express');
 var app = express();
 var morgan = require('morgan');
