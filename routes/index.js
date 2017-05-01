@@ -1,5 +1,5 @@
-var wikiRouter = require('../wiki.js');
-var userRouter = require('../user.js');
+var wikiRouter = require('./wiki.js');
+var userRouter = require('./user.js');
 
 var express = require('express');
 var router = express.Router();

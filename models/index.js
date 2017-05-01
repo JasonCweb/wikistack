@@ -16,6 +16,16 @@ var db = new Sequelize('postgres:localhost:5432/wikistack', {
 // name	full name of the user
 // email	a unique, identifying email address
 
+function generateUrlTitle(page) {
+  if(page.title) {
+    page.urlTitle = page.title.replace(/\s+/g, '_').replace(/\W/g, '');
+  } else {
+    page.urlTitle = Math.random().toString(36).substring(2,7);
+  }
+}
+
+
+
 var Page = db.define('page', {
     title: {
         type: Sequelize.STRING,
@@ -27,9 +37,6 @@ var Page = db.define('page', {
     urlTitle: {
         type: Sequelize.STRING,
         allowNull: false,
-        validate: {
-          isUrl: true,
-        }
     },
     content: {
         type: Sequelize.TEXT,
@@ -54,6 +61,10 @@ var Page = db.define('page', {
       }
   }
 );
+
+Page.hook('beforeValidate', generateUrlTitle);
+
+
 
 var User = db.define('user', {
     name: {
