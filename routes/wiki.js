@@ -30,5 +30,19 @@ router.get('/add', (req, res, next) => {
   next();
 });
 
+router.get('/:page', (req, res, next) => {
+  res.send(req.params.page);
+  next();
+})
+
+router.get('/:geturltitle', (req, res, next) => {
+  models.db.findOne( {
+    where: {
+
+    }
+  })
+})
+
+
 
 module.exports = router;
